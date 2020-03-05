@@ -99,13 +99,8 @@ double MQKPInstance::getSumProfits(MQKPSolution& solution)
 
 void MQKPInstance::readNumObjects(std::ifstream& f)
 {
-    std::string line;
     int numObjs;
-
-    std::getline(f, line);
-
-    numObjs = atoi(line.c_str());
-    _numObjs = numObjs;
+    f >> _numObjs;
 }
 
 void MQKPInstance::allocateVariables()
@@ -113,61 +108,29 @@ void MQKPInstance::allocateVariables()
     _weights = new int[getNumObjs()];
 
     _profits = new int*[getNumObjs()];
-    for (auto i = 0; i < getNumObjs(); ++i) {
+    for (auto i = 0; i < getNumObjs(); ++i)
         _profits[i] = new int[getNumObjs()];
-    }
 
     _capacities = new double[_numKnapsacks + 1];
 }
 
 void MQKPInstance::fillProfits(std::ifstream& f)
 {
-    std::string line;
+    for (int i = 0; i < getNumObjs(); ++i)
+        f >> _profits[i][i];
 
-    std::getline(f, line);
-
-    int startIndex = line.find_first_not_of(' ');
-    int endIndex = line.find(' ', startIndex);
-
-    for (auto i = 0; i < getNumObjs(); ++i) {
-        _profits[i][i] = atoi(line.substr(startIndex, endIndex - startIndex).c_str());
-
-        startIndex = line.find_first_not_of(' ', endIndex);
-        endIndex = line.find(' ', startIndex);
-    }
-
-    for (auto i = 0; i < getNumObjs() - 1; ++i) {
-        std::getline(f, line);
-        startIndex = line.find_first_not_of(' ');
-        endIndex = line.find(' ', startIndex);
-
-        for (auto j = i + 1; j < getNumObjs(); ++j) {
-            _profits[i][j] = atoi(line.substr(startIndex, endIndex - startIndex).c_str());
-
-            //The matrix is symetric
+    for (int i = 0; i < getNumObjs() - 1; ++i) {
+        for (int j = i + 1; j < getNumObjs(); ++j) {
+            f >> _profits[i][j];
             _profits[j][i] = _profits[i][j];
-
-            startIndex = line.find_first_not_of(' ', endIndex);
-            endIndex = line.find(' ', startIndex);
         }
     }
 }
 
 void MQKPInstance::fillWeights(std::ifstream& f)
 {
-    std::string line;
-
-    std::getline(f, line);
-
-    int startIndex = line.find_first_not_of(' ');
-    int endIndex = line.find(' ', startIndex);
-
-    for (auto i = 0; i < getNumObjs(); ++i) {
-        _weights[i] = atoi(line.substr(startIndex, endIndex - startIndex).c_str());
-
-        startIndex = line.find_first_not_of(' ', endIndex);
-        endIndex = line.find(' ', startIndex);
-    }
+    for (auto i = 0; i < getNumObjs(); ++i)
+        f >> _weights[i];
 }
 
 void MQKPInstance::fillCapacities()
