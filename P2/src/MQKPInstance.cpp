@@ -224,10 +224,7 @@ void MQKPInstance::randomPermutation(int size, vector<int>& perm)
         perm.push_back(i);
 
     for (int i = 0; i < size; ++i) {
-        int swapLocation = i;
-
-        while (swapLocation == i)
-            swapLocation = rand() % size;
+        int swapLocation = rand() % size;
 
         int swapValue = perm[swapLocation];
         perm[swapLocation] = perm[i];
