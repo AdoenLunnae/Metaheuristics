@@ -81,9 +81,11 @@ double MQKPEvaluator::computeDeltaFitness(MQKPInstance& instance,
     else if (currentViolation > 0)
         deltaFitness = newProfit - deltaViolation;
     else if (newMaxViolation > 0)
-        deltaFitness = -(newProfit + newMaxViolation);
+        deltaFitness = -(currentProfit + newMaxViolation);
     else
-        return deltaProfit;
+        deltaFitness = deltaProfit;
+
+    return deltaFitness;
 }
 
 void MQKPEvaluator::resetNumEvaluations()
