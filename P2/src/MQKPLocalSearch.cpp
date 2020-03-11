@@ -23,8 +23,7 @@ MQKPLocalSearch::~MQKPLocalSearch()
 {
 }
 
-void MQKPLocalSearch::optimise(MQKPInstance& instance,
-    MQKPNeighExplorer& explorer, MQKPSolution& solution)
+void MQKPLocalSearch::optimise(MQKPInstance& instance, MQKPNeighExplorer& explorer, MQKPSolution& solution)
 {
 
     _results.clear();

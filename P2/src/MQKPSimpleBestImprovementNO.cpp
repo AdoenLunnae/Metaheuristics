@@ -18,8 +18,7 @@
 #include <stdlib.h>
 using namespace std;
 
-bool MQKPSimpleBestImprovementNO::findOperation(MQKPInstance& instance,
-    MQKPSolution& solution, MQKPChangeOperation& operation)
+bool MQKPSimpleBestImprovementNO::findOperation(MQKPInstance& instance, MQKPSolution& solution, MQKPChangeOperation& operation)
 {
 
     MQKPObjectAssignmentOperation* oaOperation = dynamic_cast<MQKPObjectAssignmentOperation*>(&operation);

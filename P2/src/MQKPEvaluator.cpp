@@ -36,8 +36,7 @@ double MQKPEvaluator::computeFitness(MQKPInstance& instance, MQKPSolution& solut
     return fitness;
 }
 
-double MQKPEvaluator::computeDeltaFitness(MQKPInstance& instance,
-    MQKPSolution& solution, int indexObject, int indexKnapsack)
+double MQKPEvaluator::computeDeltaFitness(MQKPInstance& instance, MQKPSolution& solution, int indexObject, int indexKnapsack)
 {
 
     _numEvaluations++;
