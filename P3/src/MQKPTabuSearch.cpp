@@ -102,12 +102,12 @@ void MQKPTabuSearch::run(MQKPStopCondition& stopCondition)
             }
         }
 
-        //TODO Apply the operation and store it in the short term memory
+        // Apply the operation and store it in the short term memory
         bestOperation.apply(*_solution);
         _shortTermMem.push(bestOperation.getObj());
         _shortTermMem_aux.insert(bestOperation.getObj());
 
-        //TODO If there are too many elements in the memory, according to the tabu tennure,
+        // If there are too many elements in the memory, according to the tabu tennure,
         //delete the eldest one (i.e. obtain the first element of the queue and eliminate it
         //from the queue and from the set)
         if (_shortTermMem.size() > _tabuTennure) {
