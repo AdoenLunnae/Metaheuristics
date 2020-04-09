@@ -76,7 +76,7 @@ public:
 	 */
     static double compare(double f1, double f2)
     {
-        return (f2 - f1); // correct the value that has to be returned
+        return (f1 - f2); // correct the value that has to be returned
     }
 
     /**

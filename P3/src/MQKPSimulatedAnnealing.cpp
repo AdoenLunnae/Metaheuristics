@@ -112,9 +112,9 @@ bool MQKPSimulatedAnnealing::accept(double deltaFitness)
         auxDeltaFitness *= -1;
     }
 
-    double prob = exp(auxDeltaFitness / _T);
+    double prob = exp(-auxDeltaFitness / _T);
     double randSample = (((double)rand()) / RAND_MAX);
-    return (randSample < prob);
+    return (randSample <= prob);
 }
 
 void MQKPSimulatedAnnealing::initialise(double initialProb, int numInitialEstimates, double annealingFactor, unsigned itsPerAnnealing, MQKPInstance& instance)
