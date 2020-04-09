@@ -79,7 +79,9 @@ void MQKPIteratedGreedy::rebuild()
 	 *  3. Select a new operation
 	 */
     while (operation.getDeltaFitness() > 0) {
-        ...
+        operation.apply(*_sol);
+        _results.push_back(_sol->getFitness());
+        chooseOperation(operation);
     }
 }
 
@@ -98,7 +100,7 @@ void MQKPIteratedGreedy::destroy()
 
         double randSample = ((double)(rand())) / RAND_MAX;
 
-        if (...) {
+        if (randSample < _alpha) {
             _sol->putObjectIn(i, 0);
         }
     }
@@ -142,11 +144,16 @@ void MQKPIteratedGreedy::run(MQKPStopCondition& stopCondition)
 	 */
 
     while (stopCondition.reached() == false) {
-        ...... _results.push_back(_sol->getFitness());
+        destroy();
+        rebuild();
+        _results.push_back(_sol->getFitness());
 
         if (MQKPEvaluator::compare(_sol->getFitness(), _bestSolution->getFitness()) > 0)
-            ... else...
+            _bestSolution->copy(*_sol);
+        else {
+            ;
+        }
 
-                stopCondition.notifyIteration();
+        stopCondition.notifyIteration();
     }
 }
