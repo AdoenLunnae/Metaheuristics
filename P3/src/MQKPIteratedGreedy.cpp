@@ -47,7 +47,7 @@ void MQKPIteratedGreedy::chooseOperation(
                 // Obtain delta fitness and density (deltaFitness divided by weight)
                 int indexKnapsack = j;
 
-                double deltaFitness = MQKPEvaluator::computeDeltaFitness(*_instance, *_sol, indexObj, j);
+                double deltaFitness = MQKPEvaluator::computeDeltaFitness(*_instance, *_sol, indexObj, indexKnapsack);
                 double density = deltaFitness / _instance->getWeight(indexObj);
 
                 //update the best values if they are improved
@@ -55,7 +55,7 @@ void MQKPIteratedGreedy::chooseOperation(
                     initialisedBestDensity = true;
                     bestDensity = density;
                     bestObj = indexObj;
-                    bestKnapsack = j;
+                    bestKnapsack = indexKnapsack;
                     bestDeltaFitness = deltaFitness;
                 }
             }

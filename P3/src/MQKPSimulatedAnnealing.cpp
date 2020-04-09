@@ -108,11 +108,10 @@ bool MQKPSimulatedAnnealing::accept(double deltaFitness)
 	 */
     double auxDeltaFitness = deltaFitness;
 
-    if (MQKPEvaluator::isToBeMinimised()) {
+    if (MQKPEvaluator::isToBeMinimised())
         auxDeltaFitness *= -1;
-    }
 
-    double prob = exp(-auxDeltaFitness / _T);
+    double prob = exp(auxDeltaFitness / _T);
     double randSample = (((double)rand()) / RAND_MAX);
     return (randSample <= prob);
 }
