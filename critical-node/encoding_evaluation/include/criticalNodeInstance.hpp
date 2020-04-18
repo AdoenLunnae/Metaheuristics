@@ -30,7 +30,7 @@ private:
     typedef boost::shared_array_property_map<double, boost::property_map<Graph, boost::vertex_index_t>::const_type> CentralityMap;
 
 public:
-    CriticalNodeInstance(){};
+    CriticalNodeInstance() {};
     ~CriticalNodeInstance()
     {
         _adjacencyList.clear();
@@ -46,9 +46,6 @@ public:
 
     inline double getBetweenessCentrality() const { return _originalBetweenessCentrality; }
     double getBetweenessCentrality(const CriticalNodeSolution& solution) const;
-
-    int getDisconnectedComponents();
-    int getDisconnectedComponents(const CriticalNodeSolution& solution);
 };
 
 #endif /* CRITICALNODEINSTANCE_HPP */

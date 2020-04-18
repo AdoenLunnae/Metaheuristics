@@ -32,7 +32,6 @@ void CriticalNodeInstance::readAdjacencyList(char* filename)
     }
     f.close();
 
-    _numberNodes = _adjacencyList.size();
     Graph g(_numberNodes);
 
     for (auto i = 0; i < _adjacencyList.size(); ++i)
